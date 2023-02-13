@@ -23,6 +23,18 @@ namespace Mission06_clhwang.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult MovieApplication()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult MovieApplication(ApplicationResponse ar)
+        {
+            return View("Confirmation", ar);
+        }
+
         public IActionResult Privacy()
         {
             return View();
