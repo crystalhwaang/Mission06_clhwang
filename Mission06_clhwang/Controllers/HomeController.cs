@@ -12,10 +12,12 @@ namespace Mission06_clhwang.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private MovieApplicationContext _movieContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MovieApplicationContext x)
         {
             _logger = logger;
+            _movieContext = x;
         }
 
         public IActionResult Index()
@@ -32,6 +34,8 @@ namespace Mission06_clhwang.Controllers
         [HttpPost]
         public IActionResult MovieApplication(ApplicationResponse ar)
         {
+            _movieContext.Add(ar);
+            _movieContext.SaveChanges();
             return View("Confirmation", ar);
         }
 

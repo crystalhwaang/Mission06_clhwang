@@ -23,6 +23,7 @@ namespace Mission06_clhwang.Models
         public string Rating { get; set; }
         public bool Edited { get; set; }
         public string LentTo { get; set; }
+        [MaxLength(25)]
         public string Notes { get; set; }
     }
 }

@@ -36,7 +36,8 @@ namespace Mission06_clhwang.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(25);
 
                     b.Property<string>("Rating")
                         .IsRequired()
@@ -52,6 +53,40 @@ namespace Mission06_clhwang.Migrations
                     b.HasKey("ApplicationId");
 
                     b.ToTable("responses");
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationId = 1,
+                            Category = "Romantic Comedy",
+                            Director = "Mark Rosman",
+                            Edited = false,
+                            Notes = "This is my go-to movie.",
+                            Rating = "PG",
+                            Title = "A Cinderella Story",
+                            Year = 2004
+                        },
+                        new
+                        {
+                            ApplicationId = 2,
+                            Category = "Action/Adventure",
+                            Director = "Joe Russo",
+                            Edited = false,
+                            Rating = "PG-13",
+                            Title = "Avengers: Endgame",
+                            Year = 2019
+                        },
+                        new
+                        {
+                            ApplicationId = 3,
+                            Category = "Romantic Comedy",
+                            Director = "Gil Junger",
+                            Edited = false,
+                            Notes = "This is a classic.",
+                            Rating = "PG-13",
+                            Title = "10 Things I Hate About You",
+                            Year = 1999
+                        });
                 });
 #pragma warning restore 612, 618
         }
