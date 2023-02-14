@@ -25,6 +25,11 @@ namespace Mission06_clhwang.Controllers
             return View();
         }
 
+        public IActionResult Podcast()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult MovieApplication()
         {

@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <ul>
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-controller="Home" asp-action="Podcast">Podcast</a></li>
+        <li><a asp-controller="Home" asp-action="MovieApplication">Add A Movie</a></li>
+    </ul>
     <div>
         @RenderBody()
     </div>
