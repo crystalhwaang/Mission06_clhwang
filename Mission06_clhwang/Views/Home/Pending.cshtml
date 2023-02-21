@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Pending";
+}
+
+@model List<ApplicationResponse>
+
+<table class="table table-bordered table-striped">
+    <thead class='font-weight-bold'>
+        <tr>
+            <td>Category</td>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent To</td>
+            <td>Notes</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var y in Model)
+            {
+                <tr>
+                    <td>@y.Category.CategoryName</td>
+                    <td>@y.Title</td>
+                    <td>@y.Year</td>
+                    <td>@y.Director</td>
+                    <td>@y.Rating</td>
+                    <td>@y.Edited</td>
+                    <td>@y.LentTo</td>
+                    <td>@y.Notes</td>
+                </tr>
+            }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission06_clhwang.Models;
 using System;
@@ -11,12 +12,10 @@ namespace Mission06_clhwang.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private MovieApplicationContext _movieContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, MovieApplicationContext x)
+        public HomeController(MovieApplicationContext x)
         {
-            _logger = logger;
             _movieContext = x;
         }
 
@@ -33,6 +32,7 @@ namespace Mission06_clhwang.Controllers
         [HttpGet]
         public IActionResult MovieApplication()
         {
+            ViewBag.Categories = _movieContext.Categories.ToList();
             return View();
         }
         
@@ -43,16 +43,14 @@ namespace Mission06_clhwang.Controllers
             _movieContext.SaveChanges();
             return View("Confirmation", ar);
         }
-
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult Pending()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var applications = _movieContext.Responses
+                .Include(y => y.Category)
+                .OrderBy(y => y.Title)
+                .ToList();
+            return View(applications);
         }
     }
 }

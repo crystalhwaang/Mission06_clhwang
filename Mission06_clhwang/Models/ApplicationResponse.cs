@@ -12,8 +12,6 @@ namespace Mission06_clhwang.Models
         [Required]
         public int ApplicationId { get; set; }
         [Required]
-        public string Category { get; set; }
-        [Required]
         public string Title { get; set; }
         [Required]
         public int Year { get; set; }
@@ -25,5 +23,8 @@ namespace Mission06_clhwang.Models
         public string LentTo { get; set; }
         [MaxLength(25)]
         public string Notes { get; set; }
+        [Required]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

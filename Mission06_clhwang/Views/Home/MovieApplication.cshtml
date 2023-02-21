@@ -9,8 +9,14 @@
 <!--My form that connects to the database to add new movies-->
 <div>
     <form method="post">
-        <label asp-for="Category">Category:</label>
-        <input asp-for="Category" />
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId">
+            <option value="">Select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
         <br />
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" />
@@ -23,6 +29,7 @@
         <br />
         <label asp-for="Rating">Rating:</label>
         <select asp-for="Rating">
+            <option value="">Select a Rating</option>
             <option>G</option>
             <option>PG</option>
             <option>PG-13</option>

@@ -21,9 +21,8 @@ namespace Mission06_clhwang.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -52,13 +51,15 @@ namespace Mission06_clhwang.Migrations
 
                     b.HasKey("ApplicationId");
 
-                    b.ToTable("responses");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Responses");
 
                     b.HasData(
                         new
                         {
                             ApplicationId = 1,
-                            Category = "Romantic Comedy",
+                            CategoryId = 4,
                             Director = "Mark Rosman",
                             Edited = false,
                             Notes = "This is my go-to movie.",
@@ -69,7 +70,7 @@ namespace Mission06_clhwang.Migrations
                         new
                         {
                             ApplicationId = 2,
-                            Category = "Action/Adventure",
+                            CategoryId = 1,
                             Director = "Joe Russo",
                             Edited = false,
                             Rating = "PG-13",
@@ -79,7 +80,7 @@ namespace Mission06_clhwang.Migrations
                         new
                         {
                             ApplicationId = 3,
-                            Category = "Romantic Comedy",
+                            CategoryId = 3,
                             Director = "Gil Junger",
                             Edited = false,
                             Notes = "This is a classic.",
@@ -87,6 +88,71 @@ namespace Mission06_clhwang.Migrations
                             Title = "10 Things I Hate About You",
                             Year = 1999
                         });
+                });
+
+            modelBuilder.Entity("Mission06_clhwang.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Action/Adventure"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Family"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Horror/Suspense"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Miscellaneous"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryName = "Television"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryName = "VHS"
+                        });
+                });
+
+            modelBuilder.Entity("Mission06_clhwang.Models.ApplicationResponse", b =>
+                {
+                    b.HasOne("Mission06_clhwang.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
