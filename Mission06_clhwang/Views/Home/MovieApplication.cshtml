@@ -9,6 +9,7 @@
 <!--My form that connects to the database to add new movies-->
 <div>
     <form method="post">
+        <div asp-validation-summary="All"></div>
         <label asp-for="CategoryId">Category:</label>
         <select asp-for="CategoryId">
             <option value="">Select a Category</option>

@@ -39,9 +39,17 @@ namespace Mission06_clhwang.Controllers
         [HttpPost]
         public IActionResult MovieApplication(ApplicationResponse ar)
         {
-            _movieContext.Add(ar);
-            _movieContext.SaveChanges();
-            return View("Confirmation", ar);
+            if (ModelState.IsValid)
+            {
+                _movieContext.Add(ar);
+                _movieContext.SaveChanges();
+                return View("Confirmation", ar);
+            }
+            else
+            {
+                ViewBag.Categories = _movieContext.Categories.ToList();
+                return View(ar);
+            }
         }
         [HttpGet]
         public IActionResult Pending()
@@ -51,6 +59,33 @@ namespace Mission06_clhwang.Controllers
                 .OrderBy(y => y.Title)
                 .ToList();
             return View(applications);
+        }
+        [HttpGet]
+        public IActionResult Edit(int applicationid)
+        {
+            ViewBag.Categories = _movieContext.Categories.ToList();
+            var application = _movieContext.Responses.Single(y => y.ApplicationId == applicationid);
+            return View("MovieApplication", application);
+        }
+        [HttpPost]
+        public IActionResult Edit(ApplicationResponse edit)
+        {
+            _movieContext.Update(edit);
+            _movieContext.SaveChanges();
+            return RedirectToAction("Pending");
+        }
+        [HttpGet]
+        public IActionResult Delete(int applicationid)
+        {
+            var application = _movieContext.Responses.Single(y => y.ApplicationId == applicationid);
+            return View(application);
+        }
+        [HttpPost]
+        public IActionResult Delete(ApplicationResponse delete)
+        {
+            _movieContext.Responses.Remove(delete);
+            _movieContext.SaveChanges();
+            return RedirectToAction("Pending");
         }
     }
 }
