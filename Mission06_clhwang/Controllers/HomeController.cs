@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Mission06_clhwang.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Mission06_clhwang.Controllers
 {
@@ -18,24 +13,23 @@ namespace Mission06_clhwang.Controllers
         {
             _movieContext = x;
         }
-
+        //Returns the Index View
         public IActionResult Index()
         {
             return View();
         }
-
+        //Returns the Podcast View
         public IActionResult Podcast()
         {
             return View();
         }
-
+        //Get and Post Actions to fill out a movie
         [HttpGet]
         public IActionResult MovieApplication()
         {
             ViewBag.Categories = _movieContext.Categories.ToList();
             return View();
         }
-        
         [HttpPost]
         public IActionResult MovieApplication(ApplicationResponse ar)
         {
@@ -51,6 +45,7 @@ namespace Mission06_clhwang.Controllers
                 return View(ar);
             }
         }
+        //Get Action for the Pending Page and also organizes the data a bit
         [HttpGet]
         public IActionResult Pending()
         {
@@ -60,6 +55,7 @@ namespace Mission06_clhwang.Controllers
                 .ToList();
             return View(applications);
         }
+        //Get and Post Actions for the Edit Function
         [HttpGet]
         public IActionResult Edit(int applicationid)
         {
@@ -74,6 +70,7 @@ namespace Mission06_clhwang.Controllers
             _movieContext.SaveChanges();
             return RedirectToAction("Pending");
         }
+        //Get and Post Actions for the Delete Function
         [HttpGet]
         public IActionResult Delete(int applicationid)
         {

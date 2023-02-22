@@ -1,9 +1,11 @@
 ﻿@{
+    //Title for the page
     ViewData["Title"] = "Pending";
 }
 
 @model List<ApplicationResponse>
 
+<!--Creating the table with some bootstrap to make it look nice-->
 <table class="table table-bordered table-striped">
     <thead class='font-weight-bold'>
         <tr>
@@ -18,6 +20,7 @@
         </tr>
     </thead>
     <tbody>
+        <!--Looping through to grab each of the elements for each entry-->
         @foreach (var y in Model)
             {
                 <tr>
@@ -30,6 +33,7 @@
                     <td>@y.LentTo</td>
                     <td>@y.Notes</td>
 
+                    <!--Routing the Edit and Delete Buttons to their respective entries-->
                     <td><a asp-controller="Home" asp-action="Edit" asp-route-applicationid="@y.ApplicationId">Edit</a></td>
                     <td><a asp-controller="Home" asp-action="Delete" asp-route-applicationid="@y.ApplicationId">Delete</a></td>
                 </tr>

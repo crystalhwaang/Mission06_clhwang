@@ -1,4 +1,5 @@
 ﻿@{
+    //Adding Title to the Page
     ViewData["Title"] = "Delete Movie";
 }
 @model ApplicationResponse
@@ -6,6 +7,7 @@
 <h2>Confirm Deletion</h2>
 <h3>Are you sure you want to delete @Model.Title ? </h3>
 
+<!--Delete and Cancel Buttons-->
 <form method="post" asp-controller="Home" asp-action="Delete">
     <a asp-controller="Home" asp-action="Pending" class="btn btn-primary">Cancel</a>
     <button type="submit">Delete</button>

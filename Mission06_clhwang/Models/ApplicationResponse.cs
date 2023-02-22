@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Mission06_clhwang.Models
 {
+    //Creating the necessary responses and get/set methods for everything that is in the form
     public class ApplicationResponse
     {
         [Key]
@@ -24,6 +21,7 @@ namespace Mission06_clhwang.Models
         [MaxLength(25)]
         public string Notes { get; set; }
         [Required]
+        //Creating another table that links with Category.cs and CategoryId
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }

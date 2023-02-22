@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Mission06_clhwang.Models
 {
@@ -17,6 +13,7 @@ namespace Mission06_clhwang.Models
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            //Connecting the two tables with CategoryId and assigning CategoryId with a Category
             mb.Entity<Category>().HasData(
                 new Category { CategoryId = 1, CategoryName = "Action/Adventure" },
                 new Category { CategoryId = 2, CategoryName = "Comedy" },
@@ -28,6 +25,7 @@ namespace Mission06_clhwang.Models
                 new Category { CategoryId = 8, CategoryName = "VHS" }
             );
             
+            //Manually entering three different movies into the database
             mb.Entity<ApplicationResponse>().HasData(
                 new ApplicationResponse
                 {

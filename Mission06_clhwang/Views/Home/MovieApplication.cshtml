@@ -11,6 +11,7 @@
     <form method="post">
         <div asp-validation-summary="All"></div>
         <label asp-for="CategoryId">Category:</label>
+        <!--Finding and showing the Category Name and hiding the Category ID for the user-->
         <select asp-for="CategoryId">
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
@@ -28,6 +29,7 @@
         <label asp-for="Director">Director:</label>
         <input asp-for="Director" />
         <br />
+        <!--Creating limited options for the user to choose from-->
         <label asp-for="Rating">Rating:</label>
         <select asp-for="Rating">
             <option value="">Select a Rating</option>
